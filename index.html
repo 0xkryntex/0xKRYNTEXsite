@@ -11,13 +11,16 @@
             overflow: hidden;
         }
 
-        .video-background {
+        /* Adiciona a imagem de fundo */
+        .background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background-image: url('sua_imagem_de_fundo.jpg'); /* Substitua com o caminho da sua imagem */
+            background-size: cover;
+            background-position: center;
             z-index: -1;
         }
 
@@ -53,11 +56,8 @@
 </head>
 <body>
 
-    <!-- Vídeo de fundo -->
-    <video autoplay loop muted playsinline class="video-background">
-        <source src="seu_video.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos em HTML5.
-    </video>
+    <!-- Imagem de fundo -->
+    <div class="background"></div>
 
     <!-- Conteúdo principal -->
     <div class="content">
@@ -70,5 +70,4 @@
     </div>
 
 </body>
-    </html>
-    
+</html>
