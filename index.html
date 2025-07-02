@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>P MOB PLAYER</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
 
     * {
       margin: 0;
@@ -15,13 +15,15 @@
 
     body, html {
       height: 100%;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      font-family: 'Rajdhani', sans-serif;
+      background: radial-gradient(circle at top left, #0ff 0%, #000 100%);
+      background-attachment: fixed;
       color: white;
+      overflow: hidden;
     }
 
     .container {
-      height: 100%;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,54 +31,71 @@
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid #00ffff55;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #00ffff88;
       border-radius: 20px;
-      padding: 30px;
-      width: 90%;
+      padding: 40px 30px;
+      width: 95%;
       max-width: 700px;
       text-align: center;
-      box-shadow: 0 0 20px #00ffff33;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px #00ffff33;
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 25px #00ffff33;
+      }
+      50% {
+        box-shadow: 0 0 45px #00ffff99;
+      }
     }
 
     .card h1 {
+      font-size: 42px;
       color: #00ffff;
-      font-size: 48px;
-      margin-bottom: 30px;
       text-shadow: 0 0 10px #00ffffaa;
+      margin-bottom: 25px;
     }
 
     .button-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
-      margin-top: 10px;
     }
 
     .button {
-      background: linear-gradient(90deg, #00ffff, #0055ff);
-      color: black;
-      padding: 12px 20px;
-      border-radius: 10px;
-      text-decoration: none;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid #00ffff88;
+      color: #00ffff;
+      padding: 12px 18px;
+      border-radius: 12px;
       font-size: 16px;
+      text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 10px #00ffffaa;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ffff55;
+      transition: 0.3s ease;
+      backdrop-filter: blur(6px);
       position: relative;
     }
 
     .button::before {
-      content: ">";
-      margin-right: 8px;
-      color: black;
-      font-weight: bold;
+      content: "▶ ";
+      color: #00ffff;
     }
 
     .button:hover {
+      background: #00ffff;
+      color: black;
       transform: scale(1.05);
-      background: linear-gradient(90deg, #00ccff, #0033ff);
-      box-shadow: 0 0 15px #00ffffdd;
+      box-shadow: 0 0 20px #00ffffcc;
+    }
+
+    @media (max-width: 500px) {
+      .card h1 {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -90,10 +109,10 @@
         <a href="https://www.mediafire.com/file/zygcarxfcsl6ngk/FF-ITEMS.apk/file" class="button">BAIXAR FF-ITEMS</a>
         <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" class="button">ZARCHIVER</a>
         <a href="https://www.instagram.com/mobplayer_creator?igsh=bmJ6Zm55eWZ5cGJw" class="button">INSTAGRAM</a>
-        <a href="https://www.tiktok.com/@jogador_mr?_t=8olUfzWoA3K&_r=1" class="button">TIK TOK</a>
+        <a href="https://www.tiktok.com/@jogador_mr?_t=8olUfzWoA3K&_r=1" class="button">TIKTOK</a>
       </div>
     </div>
   </div>
 
 </body>
-            </html>
+</html>
