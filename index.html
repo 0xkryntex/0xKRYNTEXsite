@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>P MOB PLAYER</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00ffff"/>
+  <link rel="icon" href="icon-192.png" type="image/png">
+
+  <!-- Fonte e Estilo -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
 
@@ -13,55 +18,38 @@
       box-sizing: border-box;
     }
 
-    body, html {
-      height: 100%;
+    body {
       font-family: 'Rajdhani', sans-serif;
-      background: radial-gradient(circle at top left, #0ff 0%, #000 100%);
-      background-attachment: fixed;
+      background: linear-gradient(135deg, #000, #00ffff22);
       color: white;
-      overflow: hidden;
-    }
-
-    .container {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       border: 1px solid #00ffff88;
       border-radius: 20px;
-      padding: 40px 30px;
-      width: 95%;
-      max-width: 700px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
       text-align: center;
-      backdrop-filter: blur(10px);
       box-shadow: 0 0 25px #00ffff33;
-      animation: pulse 4s infinite;
+      backdrop-filter: blur(10px);
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 25px #00ffff33;
-      }
-      50% {
-        box-shadow: 0 0 45px #00ffff99;
-      }
-    }
-
-    .card h1 {
-      font-size: 42px;
+    h1 {
+      font-size: 36px;
       color: #00ffff;
-      text-shadow: 0 0 10px #00ffffaa;
       margin-bottom: 25px;
+      text-shadow: 0 0 10px #00ffffaa;
     }
 
     .button-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
     }
 
@@ -69,50 +57,46 @@
       background: rgba(0, 255, 255, 0.1);
       border: 1px solid #00ffff88;
       color: #00ffff;
-      padding: 12px 18px;
+      padding: 14px;
       border-radius: 12px;
       font-size: 16px;
       text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 10px #00ffff55;
-      transition: 0.3s ease;
-      backdrop-filter: blur(6px);
-      position: relative;
-    }
-
-    .button::before {
-      content: "▶ ";
-      color: #00ffff;
+      transition: 0.3s;
+      display: block;
     }
 
     .button:hover {
       background: #00ffff;
-      color: black;
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffffcc;
+      color: #000;
+      transform: scale(1.03);
     }
 
-    @media (max-width: 500px) {
-      .card h1 {
-        font-size: 32px;
+    @media (min-width: 500px) {
+      .button-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+  </script>
 </head>
 <body>
-
-  <div class="container">
-    <div class="card">
-      <h1>P MOB PLAYER</h1>
-      <div class="button-grid">
-        <a href="https://www.mediafire.com/file/znil48o1r7ioxii/APP+MOB.apk/file" class="button">BAIXAR APP MOB</a>
-        <a href="https://www.mediafire.com/file/zygcarxfcsl6ngk/FF-ITEMS.apk/file" class="button">BAIXAR FF-ITEMS</a>
-        <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" class="button">ZARCHIVER</a>
-        <a href="https://www.instagram.com/mobplayer_creator?igsh=bmJ6Zm55eWZ5cGJw" class="button">INSTAGRAM</a>
-        <a href="https://www.tiktok.com/@jogador_mr?_t=8olUfzWoA3K&_r=1" class="button">TIKTOK</a>
-      </div>
+  <div class="card">
+    <h1>P MOB PLAYER</h1>
+    <div class="button-grid">
+      <a href="https://www.mediafire.com/file/znil48o1r7ioxii/APP+MOB.apk/file" class="button">BAIXAR APP MOB</a>
+      <a href="https://www.mediafire.com/file/zygcarxfcsl6ngk/FF-ITEMS.apk/file" class="button">BAIXAR FF-ITEMS</a>
+      <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" class="button">ZARCHIVER</a>
+      <a href="https://www.instagram.com/mobplayer_creator?igsh=bmJ6Zm55eWZ5cGJw" class="button">INSTAGRAM</a>
+      <a href="https://www.tiktok.com/@jogador_mr?_t=8olUfzWoA3K&_r=1" class="button">TIKTOK</a>
     </div>
   </div>
-
 </body>
-</html>
+  </html>
