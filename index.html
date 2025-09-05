@@ -1,242 +1,175 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>0xKRYNTEX — Oficial</title>
-
-  <!-- PWA manifest -->
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Basic meta -->
-  <meta name="theme-color" content="#081118" />
-  <meta name="description" content="0xKRYNTEX — Criador do mapa Fronteira no Free Fire. 36M+ jogadores • 4M+ likes" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0xKRYNTEX</title>
   <style>
-    /* Reset minimal */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(10,255,140,0.03), transparent),
-                  linear-gradient(180deg,#03060a 0%, #071118 100%);
-      color:#d8fdf0;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.4;
-      padding-bottom:40px;
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Container */
-    .wrap{max-width:1100px;margin:0 auto;padding:28px}
-
-    /* Header / nav */
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo-sm{width:56px;height:56px;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,255,120,0.06)}
-    nav a{color:#9feec5;text-decoration:none;margin-left:16px;font-weight:600}
-    nav a:hover{color:#fff}
-
-    /* Hero */
-    .hero{
-      margin-top:20px;
-      display:grid;
-      grid-template-columns: 260px 1fr;
-      gap:28px;
-      align-items:center;
-    }
-    .avatar{
-      width:240px;height:240px;border-radius:18px;overflow:hidden;border:4px solid rgba(0,255,120,0.06);
-      display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 40px rgba(0,255,120,0.04) inset;
-    }
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-
-    .hero-content h1{
-      font-size:40px;letter-spacing:1px;margin-bottom:6px;
-      display:flex;align-items:center;gap:12px;
-    }
-    .tagline{color:#9feec5;font-weight:700;font-size:14px;padding:6px 10px;background:linear-gradient(90deg, rgba(0,255,120,0.06), rgba(0,0,0,0));border-radius:8px}
-    .impact{margin-top:12px;color:#bfeee0;font-size:18px}
-
-    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;
-      background:#00e07a;color:#041017;font-weight:700;border:none;cursor:pointer;text-decoration:none;
-      box-shadow: 0 8px 24px rgba(0,224,122,0.12);
-    }
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#d8fdf0}
-
-    /* Cards */
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .card h3{font-size:16px;margin-bottom:8px}
-    .stat{font-size:26px;font-weight:800;color:#9feec5}
-
-    /* Projects & about */
-    section{margin-top:40px}
-    .project{
-      display:flex;gap:16px;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.18));
-      padding:16px;border-radius:12px;border:1px solid rgba(0,255,120,0.04);
-      align-items:center;
-    }
-    .project img{width:160px;height:100px;object-fit:cover;border-radius:8px}
-    .project .meta{flex:1}
-    .project .meta p{color:#bfeee0;font-size:14px;margin-top:6px}
-
-    /* Footer / contact */
-    footer{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-    .social a{margin-right:10px;text-decoration:none;color:#9feec5;font-weight:700}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns: 1fr; text-align:center}
-      .avatar{margin:0 auto}
-      .grid3{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:560px){
-      .grid3{grid-template-columns:1fr}
-      nav a{margin-left:10px;font-size:14px}
-      .hero-content h1{font-size:28px;justify-content:center}
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #00ff9d;
+      overflow: hidden;
     }
 
-    /* subtle animated glow behind name */
-    .glow{
-      position:relative;
+    /* Canvas Matrix */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background: black;
     }
-    .glow::after{
-      content:"";position:absolute;left:-8px;right:-8px;top:-18px;height:40px;border-radius:14px;z-index:-1;
-      background:radial-gradient(circle at 20% 30%, rgba(0,255,140,0.08), transparent 20%),
-                 radial-gradient(circle at 80% 70%, rgba(157,255,200,0.03), transparent 20%);
-      filter:blur(12px);
+
+    /* Conteúdo principal */
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px #00ff9d;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #00ff9d;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ff9d; }
+      to { text-shadow: 0 0 30px #00ff9d, 0 0 50px #00ff9d; }
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: transparent;
+      border: 2px solid #00ff9d;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      color: #00ff9d;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 5px;
+    }
+
+    .btn:hover {
+      background: #00ff9d;
+      color: black;
+      box-shadow: 0 0 15px #00ff9d;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo-sm"><img src="logo.png" alt="0xKRYNTEX logo" style="width:100%;height:100%;object-fit:cover"></div>
-        <div>
-          <div style="font-weight:800;font-size:16px">0xKRYNTEX</div>
-          <div style="font-size:12px;color:#96e9c6">Criador do mapa Fronteira — Free Fire</div>
-        </div>
-      </div>
+  <!-- Fundo animado -->
+  <canvas id="matrix"></canvas>
 
-      <nav aria-label="menu">
-        <a href="#home">Home</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <main id="home" class="hero" role="main">
-      <div class="avatar" title="0xKRYNTEX">
-        <img src="avatar.png" alt="Avatar 0xKRYNTEX">
-      </div>
-
-      <div class="hero-content">
-        <h1 class="glow">
-          0xKRYNTEX
-          <span class="tagline">Criador do mapa Fronteira</span>
-        </h1>
-
-        <div class="impact">36M+ jogadores alcançados • 4M+ likes • Reconhecido por grandes creators</div>
-
-        <div class="cta">
-          <a class="btn" href="#projetos">Ver projetos</a>
-          <a class="btn ghost" href="#contato">Parcerias / Contato</a>
-        </div>
-
-        <div class="grid3" style="margin-top:18px">
-          <div class="card">
-            <h3>Visão</h3>
-            <div class="stat">Mapas com impacto</div>
-            <p style="margin-top:8px;color:#bfeee0;font-size:13px">Criar experiências memoráveis no Free Fire e conectar comunidade e creators.</p>
-          </div>
-
-          <div class="card">
-            <h3>Alcance</h3>
-            <div class="stat">36M+</div>
-            <p style="margin-top:8px;color:#bfeee0;font-size:13px">Público total que já passou pelo mapa Fronteira.</p>
-          </div>
-
-          <div class="card">
-            <h3>Engajamento</h3>
-            <div class="stat">4M+ Likes</div>
-            <p style="margin-top:8px;color:#bfeee0;font-size:13px">Reações e apoio da comunidade e influenciadores.</p>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- SOBRE -->
-    <section id="sobre">
-      <h2 style="font-size:20px;margin-bottom:8px">Sobre</h2>
-      <p style="color:#bfeee0;max-width:900px">
-        Sou <strong>0xKRYNTEX</strong>, level-up designer e criador do mapa <em>Fronteira</em> no Free Fire. Meus mapas focam em flow de jogo, pontos de cover inteligentes e rotas de high-skill que geram conteúdo consistente para creators e torneios. Trabalho com design de mapas, balance e otimização para melhor experiência em partidas públicas e eventos.
-      </p>
-    </section>
-
-    <!-- PROJETOS -->
-    <section id="projetos">
-      <h2 style="font-size:20px;margin-bottom:12px">Projetos</h2>
-
-      <div class="project" role="article" aria-labelledby="projeto1">
-        <img src="logo.png" alt="banner do projeto Fronteira" />
-        <div class="meta">
-          <h3 id="projeto1" style="font-size:18px">Fronteira — mapa principal</h3>
-          <p>Mapa oficial <strong>Fronteira</strong> (Free Fire). Projetado para criar jogadas emocionantes e permitir narrativas consistentes para streamers. Métricas: 36M+ jogadores, 4M+ likes, presença em livestreams de grandes influenciadores.</p>
-          <div style="margin-top:8px"><a class="btn ghost" href="#" onclick="openProject()">Ver mais</a></div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato">
-      <h2 style="font-size:20px;margin-top:30px">Contato</h2>
-      <p style="color:#bfeee0">Quer contratar, colaborar ou falar sobre marca no mapa? Use as redes abaixo ou mande e-mail.</p>
-
-      <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;align-items:center">
-        <a class="btn" href="mailto:contato@0xkryntex.com">contato@0xkryntex.com</a>
-        <div class="social" style="color:#bfeee0">
-          <a href="#" title="YouTube / Shorts">YouTube</a>
-          <a href="#" title="Instagram">Instagram</a>
-          <a href="#" title="Twitter/X">X</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <strong>0xKRYNTEX</strong> — Criador do mapa Fronteira</div>
-      <div style="color:#8fe7c8;font-size:13px">Pronto pra PWA — instale pelo navegador.</div>
-    </footer>
+  <!-- Conteúdo -->
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="0xKRYNTEX Logo">
+    </div>
+    <h1>0xKRYNTEX</h1>
+    <p>Inovação, estilo e tecnologia em um só lugar. Bem-vindo ao universo da 0xKRYNTEX.</p>
+    <div>
+      <button class="btn" onclick="alert('Código copiado: 0xKRYNTEX')">Copiar Código</button>
+      <button class="btn" onclick="window.location.href='https://github.com/0xkryntex'">GitHub</button>
+    </div>
   </div>
 
-  <script>
-    // Pequenas interações e PWA install prompt handler
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      // aqui podemos mostrar um botão personalizado; por ora deixamos console
-      console.log('PWA install prompt disponível');
-    });
+  <footer>© 2025 - 0xKRYNTEX | Todos os direitos reservados</footer>
 
-    function openProject(){
-      alert('Projeto: Fronteira\n36M+ jogadores • 4M+ likes\nContato em contato@0xkryntex.com');
+  <script>
+    // Matrix Animation
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
     }
 
-    // Register service worker for offline cache
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('service-worker.js').then(()=> {
-        console.log('Service Worker registrado');
-      }).catch(err=> console.warn('SW erro', err));
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff9d";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    // Copiar código
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Código copiado com sucesso!");
+      });
     }
   </script>
 </body>
-                               </html>
+</html>
