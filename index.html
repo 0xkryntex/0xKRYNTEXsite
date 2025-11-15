@@ -3,44 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Site do KRYNTEX</title>
 
-  <style>
-    /* seu CSS (mantive igual) */
-    body{margin:0;padding:0;background:#000;color:#0f0;font-family:Arial, sans-serif;text-align:center}
-    header{padding:30px 0;background:#020202;font-size:34px;font-weight:bold;text-shadow:0 0 15px #0f0;border-bottom:2px solid #0f0}
-    .avatar{margin-top:25px}
-    .avatar img{width:120px;height:120px;border-radius:50%;box-shadow:0 0 20px #0f0}
-    .section-box{margin:40px auto;width:90%;max-width:600px;background:#0a0a0a;padding:20px;border-radius:10px;box-shadow:0 0 15px #030;border:1px solid #0f0}
-    h2{margin-top:0;text-shadow:0 0 10px #0f0}
-    .btn-container{display:flex;flex-direction:column;gap:12px;margin-top:15px}
-    a.button{padding:15px;background:#000;border:1px solid #0f0;border-radius:8px;text-decoration:none;color:#0f0;font-weight:bold;transition:.2s;text-shadow:0 0 5px #0f0}
-    a.button:hover{background:#0f0;color:#000;text-shadow:none}
-    #installBtn{position:fixed;right:20px;bottom:20px;padding:12px 18px;background:#0f0;color:#000;border:none;border-radius:8px;font-weight:bold;cursor:pointer;box-shadow:0 0 10px #0f0;display:none}
-  </style>
-
-  <!-- MANIFEST: verifique caminho -->
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <link rel="apple-touch-icon" href="icon-192.png">
 
-  <script>
-    // registro do service worker com logs claros
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-      .then(reg => {
-        console.log('[SW] Registrado com sucesso:', reg);
-      })
-      .catch(err => {
-        console.error('[SW] Falha no registro:', err);
-      });
-    } else {
-      console.warn('[SW] Service Worker não suportado neste navegador.');
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
-  </script>
+    header {
+      padding: 30px 0;
+      background: #020202;
+      font-size: 34px;
+      font-weight: bold;
+      text-shadow: 0 0 15px #0f0;
+      border-bottom: 2px solid #0f0;
+    }
+    .avatar {
+      margin-top: 25px;
+    }
+    .avatar img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #0f0;
+    }
+    .section-box {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 600px;
+      background: #0a0a0a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #030;
+      border: 1px solid #0f0;
+    }
+    h2 {
+      margin-top: 0;
+      text-shadow: 0 0 10px #0f0;
+    }
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    a.button {
+      padding: 15px;
+      background: #000;
+      border: 1px solid #0f0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #0f0;
+      font-weight: bold;
+      transition: 0.2s;
+      text-shadow: 0 0 5px #0f0;
+    }
+    a.button:hover {
+      background: #0f0;
+      color: #000;
+      text-shadow: none;
+    }
+  </style>
 </head>
 <body>
   <header>KRYNTEX</header>
 
-  <div class="avatar"><img src="https://via.placeholder.com/120" alt="avatar" /></div>
+  <div class="avatar">
+    <img src="https://via.placeholder.com/120" alt="avatar" />
+  </div>
 
   <div class="section-box">
     <h2>Minhas Redes</h2>
@@ -67,36 +107,11 @@
     </div>
   </div>
 
-  <button id="installBtn">Instalar PWA</button>
-
+  <!-- REGISTRO DO SERVICE WORKER -->
   <script>
-    // install prompt handler com logs
-    let deferredPrompt;
-    const installBtn = document.getElementById('installBtn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('[PWA] beforeinstallprompt recebido');
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'block';
-    });
-
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) {
-        console.warn('[PWA] Sem prompt disponível');
-        return;
-      }
-      console.log('[PWA] Chamando prompt de instalação');
-      deferredPrompt.prompt();
-      const choice = await deferredPrompt.userChoice;
-      console.log('[PWA] Resultado do prompt:', choice);
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    });
-
-    window.addEventListener('appinstalled', () => {
-      console.log('[PWA] App instalado com sucesso');
-    });
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
   </script>
 </body>
   </html>
