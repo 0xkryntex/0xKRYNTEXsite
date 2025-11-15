@@ -65,13 +65,12 @@
       color: #000;
       text-shadow: none;
     }
-  </style>
-  <link rel="manifest" href="/manifest.json">
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
-}
-</script>
+  </style>  <link rel="manifest" href="/manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
 </head>
 <body>
   <header>KRYNTEX</header>  <div class="avatar">
@@ -97,5 +96,41 @@ if ('serviceWorker' in navigator) {
       <a href="#" class="button">Botão 9</a>
       <a href="#" class="button">Botão 10</a>
     </div>
-  </div></body>
-  </html>
+  </div></body><!-- manifest.json --><script type="application/json" id="manifest-json">
+{
+  "name": "KRYNTEX",
+  "short_name": "KRYNTEX",
+  "description": "Site oficial do KRYNTEX",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff00",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
+</script><!-- service-worker.js --><script id="service-worker-script">
+const CACHE_NAME = 'kryntex-cache-v1';
+const FILES_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
+];
+
+self.addEventListener('install', evt => {
+  evt.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE)));
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', evt => {
+  evt.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', evt => {
+  evt.respondWith(
+    caches.match(evt.request).then(resp => resp || fetch(evt.request))
+  );
+});
+</script></html>
