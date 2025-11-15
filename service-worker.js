@@ -2,8 +2,6 @@ const CACHE_NAME = 'kryntex-cache-v1';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/script.js',
   '/icons/icon-192.png',
   '/icons/icon-512.png'
 ];
