@@ -1,8 +1,10 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Site do KRYNTEX</title>
+
   <style>
     body {
       margin: 0;
@@ -65,24 +67,34 @@
       color: #000;
       text-shadow: none;
     }
-  </style>  <link rel="manifest" href="/manifest.json">
+  </style>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
+      navigator.serviceWorker.register('service-worker.js');
     }
   </script>
 </head>
+
 <body>
-  <header>KRYNTEX</header>  <div class="avatar">
+  <header>KRYNTEX</header>
+
+  <div class="avatar">
     <img src="https://via.placeholder.com/120" alt="avatar" />
-  </div>  <div class="section-box">
+  </div>
+
+  <div class="section-box">
     <h2>Minhas Redes</h2>
     <div class="btn-container">
       <a href="#" class="button">Instagram</a>
       <a href="#" class="button">YouTube</a>
       <a href="#" class="button">Discord</a>
     </div>
-  </div>  <div class="section-box">
+  </div>
+
+  <div class="section-box">
     <h2>Seções do Site</h2>
     <div class="btn-container">
       <a href="#" class="button">Jogos</a>
@@ -96,7 +108,23 @@
       <a href="#" class="button">Botão 9</a>
       <a href="#" class="button">Botão 10</a>
     </div>
-  </div><button id="installBtn" style="position: fixed; right: 20px; bottom: 20px; padding: 12px 18px; background:#0f0; color:#000; border:none; border-radius:8px; font-weight:bold; cursor:pointer; box-shadow:0 0 10px #0f0;">Instalar PWA</button>
+  </div>
+
+  <!-- Botão para instalar PWA -->
+  <button id="installBtn" style="
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 12px 18px;
+    background:#0f0;
+    color:#000;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 10px #0f0;">
+    Instalar PWA
+  </button>
 
   <script>
     let deferredPrompt;
@@ -112,45 +140,11 @@
     installBtn.addEventListener('click', async () => {
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+      await deferredPrompt.userChoice;
       deferredPrompt = null;
       installBtn.style.display = 'none';
     });
-  </script></body><!-- manifest.json --><script type="application/json" id="manifest-json">
-{
-  "name": "KRYNTEX",
-  "short_name": "KRYNTEX",
-  "description": "Site oficial do KRYNTEX",
-  "start_url": "/?source=pwa",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#00ff00",
-  "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ]
-}
-</script><!-- service-worker.js --><script id="service-worker-script">
-const CACHE_NAME = 'kryntex-cache-v1';
-const FILES_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
-];
+  </script>
 
-self.addEventListener('install', evt => {
-  evt.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE)));
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', evt => {
-  evt.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', evt => {
-  evt.respondWith(
-    caches.match(evt.request).then(resp => resp || fetch(evt.request))
-  );
-});
-</script></html>
+</body>
+</html>
